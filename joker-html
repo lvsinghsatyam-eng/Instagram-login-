@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joker Animation</title>
+<link rel="stylesheet" href="joker-style.css">
+</head>
+<body>
+<div class="joker-container">
+<h1>🎭 Welcome Joker 🎭</h1>
+<p id="user"></p>
+
+<div class="joker-face">
+🤡
+</div>
+
+<button onclick="logout()">Logout</button>
+</div>
+
+<script src="joker-script.js"></script>
+</body>
+</html>
