@@ -1,61 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Instagram-style Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fafafa;
+      --card:#ffffff;
+      --muted:#8e8e8e;
+      --accent:#0095f6;
+      --radius:12px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; background:var(--bg); display:flex; align-items:center; justify-content:center; padding:24px;
+    }
+    .wrap{
+      width:100%; max-width:980px; display:grid; grid-template-columns:1fr 380px; gap:40px; align-items:center;
+    }
+    /* phone mockup */
+    .phone{
+      width:100%; max-width:500px; margin:0 auto; display:flex; align-items:center; justify-content:center;
+    }
+    .phone-mock{
+      width:320px; height:620px; border-radius:34px; background:linear-gradient(180deg,#fff 0%, #fff 60%); box-shadow:0 20px 40px rgba(0,0,0,0.12); border:1px solid rgba(0,0,0,0.06); position:relative; overflow:hidden;
+    }
+    .phone-mock:before{ content:''; position:absolute; left:50%; transform:translateX(-50%); top:18px; width:100px; height:6px; border-radius:6px; background:linear-gradient(90deg,#f3f3f3,#e9e9e9); }
+    .stories{ display:flex; gap:12px; padding:18px 16px 0; }
+    .story{ width:62px; height:62px; border-radius:50%; background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; }
+    .feed{ padding:12px 14px; }
+    .post{ background:#fff; border-radius:14px; padding:12px; margin-bottom:12px; box-shadow:0 2px 6px rgba(0,0,0,0.03); }
+    .post h4{ margin:0 0 6px 0; font-size:14px }
+    .post p{ margin:0; font-size:13px; color:var(--muted) }
 
+    /* login card */
+    .card{
+      background:var(--card); border-radius:var(--radius); padding:24px; text-align:center; border:1px solid rgba(0,0,0,0.06);
+    }
+    .brand{ font-family: 'Segoe UI', Inter; font-size:44px; font-weight:600; margin-bottom:18px; letter-spacing:1px }
+    .subtitle{ color:var(--muted); font-size:15px; margin-bottom:18px }
+    form{ display:flex; flex-direction:column; gap:10px }
+    input[type=text], input[type=password]{ padding:12px 12px; border-radius:6px; border:1px solid #dbdbdb; font-size:14px }
+    button{ padding:10px 12px; border-radius:6px; border:none; background:var(--accent); color:white; font-weight:600; cursor:pointer }
+    .divider{ display:flex; align-items:center; gap:12px; margin:12px 0; }
+    .divider hr{ flex:1; border:none; height:1px; background:#eee }
+    .facebook{ color:#385185; font-weight:700; display:flex; align-items:center; gap:8px; justify-content:center; cursor:pointer }
+    .muted{ color:var(--muted); font-size:13px }
+    .small{ font-size:13px }
+    .register{ margin-top:12px; padding:14px; border-radius:var(--radius); background:#fff; border:1px solid rgba(0,0,0,0.04) }
 
+    /* responsive */
+    @media (max-width:900px){ .wrap{ grid-template-columns:1fr; max-width:420px } .phone{ order:2 } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="phone" aria-hidden="true">
+      <div class="phone-mock">
+        <div class="stories">
+          <div class="story">A</div>
+          <div class="story">B</div>
+          <div class="story">C</div>
+          <div class="story">D</div>
+        </div>
+        <div class="feed">
+          <div class="post"><h4>alice</h4><p>Sunny day at the beach 🌞</p></div>
+          <div class="post"><h4>bob</h4><p>Homemade pizza 🍕</p></div>
+          <div class="post"><h4>charlie</h4><p>Mountain hike — views!</p></div>
+        </div>
+      </div>
+    </div>
 
+    <div>
+      <div class="card" id="loginCard">
+        <div class="brand">Insta<span style="color:var(--accent)">gram</span></div>
+        <div class="subtitle">Log in to see photos and videos from your friends.</div>
 
+        <form id="loginForm" autocomplete="on" novalidate>
+          <input type="text" id="username" name="username" placeholder="Phone number, username or email" required>
+          <input type="password" id="password" name="password" placeholder="Password" required>
+          <button type="submit">Log In</button>
+        </form>
 
+        <div class="divider">
+          <hr><div class="muted small">OR</div><hr>
+        </div>
 
+        <div class="facebook" id="fbLogin" role="button" tabindex="0">
+          <!-- simple FB icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.07C22 6.48 17.52 2 11.93 2 6.34 2 1.86 6.48 1.86 12.07 1.86 17.11 5.78 21.15 10.48 21.93v-7.67H8.08v-3.76h2.4V8.2c0-2.38 1.41-3.68 3.57-3.68 1.03 0 2.1.18 2.1.18v2.31h-1.18c-1.16 0-1.52.72-1.52 1.46v1.74h2.58l-.41 3.76h-2.17V21.9c4.71-.78 8.63-4.82 8.63-9.83z" fill="#385185"/></svg>
+          <span>Continue as Facebook</span>
+        </div>
 
+        <div style="margin-top:12px" class="muted small"><a href="#" id="forgot">Forgot password?</a></div>
+      </div>
 
+      <div class="register">
+        <div class="small">Don't have an account? <a href="#">Sign up</a></div>
+      </div>
+    </div>
+  </div>
 
+  <script>
+    // Simple client-side validation and demo behaviour
+    const form = document.getElementById('loginForm');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
 
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const u = username.value.trim();
+      const p = password.value.trim();
+      if(!u || !p){
+        showToast('Please enter username and password');
+        return;
+      }
 
+      // Fake login demo behaviour — replace with real auth call
+      showToast('Logging in...');
+      setTimeout(()=>{
+        if(u.toLowerCase() === 'demo' && p === 'demo'){
+          showToast('Login successful — welcome back!');
+        } else {
+          showToast('Invalid credentials. (Try demo / demo)');
+        }
+      }, 900);
+    });
 
-￼ alt="Instagram" class="phone-image">
+    document.getElementById('fbLogin').addEventListener('click', function(){
+      showToast('Facebook login is a demo placeholder');
+    });
 
+    document.getElementById('forgot').addEventListener('click', function(e){
+      e.preventDefault();
+      showToast('Password reset link would be sent (demo)');
+    });
 
-
-
-
-
-Instagram
-
-
-
-
-
-type="text" 
-id="username" 
-placeholder="Phone number, username or email" 
-required
->
-
-
-type="password" 
-id="password" 
-placeholder="Password" 
-required
->
-
-Log in
-
-
-OR
-
-
-
-
-
-
-Log in with Facebook
-
-
-
-Forgot password?
-
-
-
-Don't have an account? Sign up
-
-
-
-
+    function showToast(msg){
+      let t = document.getElementById('toast');
+      if(!t){
+        t = document.createElement('div'); t.id='toast';
+        Object.assign(t.style,{position:'fixed',left:'50%',transform:'translateX(-50%)',bottom:'34px',background:'#111',color:'#fff',padding:'10px 14px',borderRadius:'8px',opacity:0,transition:'opacity .2s'});
+        document.body.appendChild(t);
+      }
+      t.textContent = msg;
+      t.style.opacity = 1;
+      clearTimeout(t._hide);
+      t._hide = setTimeout(()=>{ t.style.opacity = 0; }, 2600);
+    }
+  </script>
+</body>
+</html>
